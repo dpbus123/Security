@@ -6,3 +6,4 @@
 - Key must be capital alphabet like 'B'
 - DecPlain.txt (Letters to decode)
 - EncPlain.txt (Letters to incode)
+- There are two method to make disk and encrypt and decrypt
