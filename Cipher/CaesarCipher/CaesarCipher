@@ -10,22 +10,22 @@ def makeDisk(key) :
         key2index[alphabet] = index
 
     if key in key2index:
-        k = key2index[key]          #Ex)key = 'B' 이면 k = '1'
+        k = key2index[key]          #Ex)key = 'B' -> k = '1'
     else :
         return None, None
     
-    enc_disk = {}                       #평문 문자 : 암호문 문자
-    dec_disk = {}                       #암호문 문자 : 평문 문자
+    enc_disk = {}                       #PlainText : CipherText
+    dec_disk = {}                       #CipherText : PlainText
     
     for i in range(26) :
-        enc_i = (i+k)%26
-        enc_ascii = enc_i + 65   #암호문 문자
-        enc_disk[chr(i+65)] = chr(enc_ascii)    #enc[평문 문자] = 암호문 문자
-        dec_disk[chr(enc_ascii)] = chr(i+65)      #dec[암호문 문자] = 평문 문자
+        enc_i = (i+k)%26         #enc_i = CipherText's alphabet order (A is 0)
+        enc_ascii = enc_i + 65   #enc_ascii = CipherText's ascii code
+        enc_disk[chr(i+65)] = chr(enc_ascii)    #enc_disk[PlainText] = CipherText
+        dec_disk[chr(enc_ascii)] = chr(i+65)      #dec_disk[CipherText] = PlainText
 
     return enc_disk, dec_disk
 
-def caesar(msg, key, mode) :        #ret라는 문자열에 한 문자씩 집어넣는 방식
+def caesar(msg, key, mode) :        #A method of inserting one character into the string 'ret'
     ret = ''
 
     msg = msg.upper()
@@ -48,7 +48,7 @@ def caesar(msg, key, mode) :        #ret라는 문자열에 한 문자씩 집어
 
     return ret
 
-def caesar2(msg, key, mode):        #msg 문자열을 replace 함수로 변형시키는 방법
+def caesar2(msg, key, mode):        #This is a method to transform the 'msg' string using the 'replace' function.
 
     msg = msg.upper()
 
@@ -70,27 +70,27 @@ def caesar2(msg, key, mode):        #msg 문자열을 replace 함수로 변형�
 
 def main() :
 
-    h = open('DecPlain.txt', 'rt')      #복호화 시키고자 하는 파일
+    h = open('DecPlain.txt', 'rt')      #File to be decrypted
     content1 = h.read()
     h.close()
 
-    h = open('EncPlain.txt', 'rt')      #암호화 시키고자 하는 파일
+    h = open('EncPlain.txt', 'rt')      #File to be encrypted
     content2 = h.read()
     h.close()   
 
-    h = open('ca1_DEC.txt', 'wt+')      
+    h = open('ca1_DEC.txt', 'wt+')      #Method1 Dec    
     h.write(caesar(content1, 'B' ,DEC))
     h.close()
 
-    h = open('ca1_ENC.txt', 'wt+')
+    h = open('ca1_ENC.txt', 'wt+')      #Method1 Enc  
     h.write(caesar(content2, 'B',ENC))
     h.close()
 
-    h = open('ca2_DEC.txt', 'wt+')
+    h = open('ca2_DEC.txt', 'wt+')      #Method2 Dec  
     h.write(caesar2(content1, 'B',DEC))
     h.close()
 
-    h = open('ca2_ENC.txt', 'wt+')
+    h = open('ca2_ENC.txt', 'wt+')      #Method2 Enc
     h.write(caesar2(content2, 'B',ENC))
     h.close()
     
