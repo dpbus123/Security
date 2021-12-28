@@ -1,7 +1,7 @@
 ENC = 0
 DEC = 1
 
-def makeDisk(key) :
+def makeDisk(key) :                     #Making real disk (Uneffectie)
     keytable = map(lambda x: (chr(x+65), x) , range(26))    # keytable = [('A', 0), ('B',1) ...... ('Z', 25)]
     
     key2index = {}                      #key2index = {'A' : 0, 'B' : 1, ..... 'Z' : 25}
@@ -20,7 +20,20 @@ def makeDisk(key) :
     for i in range(26) :
         enc_i = (i+k)%26         #enc_i = CipherText's alphabet order (A is 0)
         enc_ascii = enc_i + 65   #enc_ascii = CipherText's ascii code
-        enc_disk[chr(i+65)] = chr(enc_ascii)    #enc_disk[PlainText] = CipherText
+        enc_disk[chr(i+65)] = chr(enc_ascii)      #enc_disk[PlainText] = CipherText
+        dec_disk[chr(enc_ascii)] = chr(i+65)      #dec_disk[CipherText] = PlainText
+
+    return enc_disk, dec_disk
+
+def makeDisk2(key) :                #Efeective Code
+
+    enc_disk = {}                       #PlainText : CipherText
+    dec_disk = {}                       #CipherText : PlainText
+    
+    for i in range(26) :
+        enc_i = (i+key)%         #enc_i = CipherText's alphabet order (A is 0)
+        enc_ascii = enc_i + 65   #enc_ascii = CipherText's ascii code
+        enc_disk[chr(i+65)] = chr(enc_ascii)      #enc_disk[PlainText] = CipherText
         dec_disk[chr(enc_ascii)] = chr(i+65)      #dec_disk[CipherText] = PlainText
 
     return enc_disk, dec_disk
@@ -52,7 +65,7 @@ def caesar2(msg, key, mode):        #This is a method to transform the 'msg' str
 
     msg = msg.upper()
 
-    enc_disk, dec_disk = makeDisk(key)
+    enc_disk, dec_disk = makeDisk2(key)
     
     if enc_disk is None:
         return ''
