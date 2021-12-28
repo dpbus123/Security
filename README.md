@@ -1,6 +1,6 @@
 # Security
-Studying about Cyber security
-사이버 보안에 관해서 공부한 것들을 올려놓았습니다.
+- Studying about Cyber security
+- 사이버 보안에 관해서 공부한 것들을 올려놓았습니다.
 
 ## Contents
 ### Cipher
