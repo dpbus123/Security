@@ -23,10 +23,17 @@ class myDES():
         decmsg = des3.decrypt(ciphertext)
         return decmsg
 
+def make8String(msg):
+    msglen = len(msg)
+    if msglen%8 != 0:
+        msg += '0'*(8-msglen%8);
+    return msg;
+
 def main():
     keytext = 'samsjang'
     ivtext = '1234'
-    msg = 'python3x'
+    msg = 'python3x5d'
+    msg = make8String(msg)
 
     myCipher = myDES(keytext, ivtext)
     ciphered = myCipher.enc(msg)
