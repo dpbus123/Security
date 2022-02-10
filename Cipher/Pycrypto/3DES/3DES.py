@@ -30,7 +30,7 @@ def make8String(msg):
     return msg;
 
 def main():
-    keytext = 'samsjang'
+    keytext = 'ryujm'
     ivtext = '1234'
     msg = 'python3x5d'
     msg = make8String(msg)
