@@ -32,7 +32,7 @@ def make8String(msg):
 def main():
     keytext = 'ryujm'
     ivtext = '1234'
-    msg = 'python3x5d'
+    msg = 'helloworld'
     msg = make8String(msg)
 
     myCipher = myDES(keytext, ivtext)
