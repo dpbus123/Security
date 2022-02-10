@@ -48,7 +48,7 @@ class myAES():
 def main():
     keytext = 'ryujm'
     ivtext = '1234'
-    msg = 'python3x5d'
+    msg = 'helloworld'
 
     myCipher = myAES(keytext, ivtext)
     ciphered = myCipher.enc(msg)
